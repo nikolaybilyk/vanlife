@@ -1,7 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    /* Colors */
+    --green-hover-color: hsla(176, 69%, 22%, 1);
+    --orange-hover-color: hsla(15, 70%, 60%, 1);
+    --orange-accent-color: hsla(25, 100%, 61%, 1);
+    --orange-bg-color: hsla(33, 100%, 78%, 1);
+    --orange-light-color: hsla(33, 100%, 91%, 1);
+    --bg-color: hsla(33, 100%, 96%, 1);
+    --black-color: hsla(0, 0%, 0%, 1);
+    --dark-footer-color: hsla(0, 0%, 9%, 1);
+    --dark-color: hsla(0, 0%, 9%, 1);
+    --grey-color: hsla(0, 0%, 30%, 1);
+    --grey-footer-text-color: hsla(0, 0%, 67%, 1);
+    --white-color: hsla(0, 0%, 100%, 1);
+}
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    line-height: 1.375;
+    font-family: 'Inter', sans-serif;
+    color: var(--dark-color);
+    font-weight: 400;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+
+/* ==================
+   TYPOGRAPHY
+   ================== */
+
+/* Nav */
+
+.logo,
+.nav-item {
+    text-decoration: none;
+}
+
+.logo {
+    font-weight: 900;
+    color: var(--black-color);
+    font-size: 1.585rem;
+}
+
+.nav-item {
+    font-weight: 600;
+    color: var(--grey-color);
+}
+
+/* ------------ add hover states for nav items */
+
+/* Btns */
+
+.btn {
+    display: inline-block;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* Home Page */
+
+.home-title,
+.home-promo-text {
+    color: var(--white-color);
+}
+
+.home-title {
+    font-size: 2.25rem;
+    line-height: 1.16;
+    font-weight: 800;
+}
+
+.home-promo-text {
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* About Page */
+
+.about-title {
+    font-size: 2rem;
+    line-height: 1.1875;
+    font-weight: 700;
+}
+
+.about-text {
+    font-weight: 500;
+}
+
+.promo-block-title {
+    font-size: 1.5rem;
+    line-height: 1.25;
+}
+
+/* Footer */
+
+.footer-text {
+    color: var(--grey-footer-text-color);
+    font-weight: 500;
+    font-size: .875rem;
+    line-height: 1.57;
+    text-align: center;
+}
+
+/* ==================
+   LAYOUT
+   ================== */
+
+.container {
+    padding: 0 1.625em;
+}
+
+/* Nav */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.25em 1.625em;
+}
+
+/* Btns */
+
+.btn {
+    border-radius: 5px;
+}
+
+.accent-btn {
+    background: var(--orange-accent-color);
+    color: var(--white-color);
+    padding: .5em .5em .6em;
+}
+
+.secondary-btn {
+    background: var(--dark-color);
+    color: var(--white-color);
+    padding: .75em 1.375em .8em;
+}
+
+/* ------------ add active and hover states for buttons */
+
+/* Home */
+
+.home {
+    background-image: url(./src/assets/home-page-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 4em 1.625em;
+}
+
+.home-promo-text {
+    margin: 1.375em 0 3.25em;
+}
+
+.home-page-btn {
+    display: block;
+}
+
+/* About */
+
+.about-title {
+    margin: 1.5em 0 .96em;
+}
+
+.about-text {
+    margin-bottom: 1.3125em;
+}
+
+.promo-block {
+    margin: 3.4375em 0 3.3125em;
+    padding: 2em;
+    background: var(--orange-bg-color);
+    border-radius: 5px;
+}
+
+.about-page-btn {
+    margin-top: 1.5625em;
+    border-radius: 10px;
+}
+
+/* Footer */
+
+.footer {
+    background-color: var(--dark-footer-color);
+    padding: 1.625em 1.625em 1.7em;
 }

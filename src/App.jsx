@@ -6,16 +6,19 @@ import About from "./pages/About"
 export default function App() {
     return (
         <BrowserRouter>
-            <header>
-                <Link to="/">#VANLIFE</Link>
-                <nav>
-                    <Link to="/about">About</Link>
+            <header className="header">
+                <Link to="/" className="logo">#VANLIFE</Link>
+                <nav className="nav">
+                    <Link to="/about" className="nav-item">About</Link>
                 </nav>
             </header>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
             </Routes>
+            <footer className="footer">
+                <p className="footer-text">Ⓒ 2022 #VANLIFE</p>
+            </footer>
         </BrowserRouter>
     )
 }
