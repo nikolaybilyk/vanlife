@@ -42,6 +42,13 @@ img {
    TYPOGRAPHY
    ================== */
 
+.title {
+    font-size: 2rem;
+    line-height: 1.1875;
+    font-weight: 700;
+}
+
+
 /* Nav */
 
 .logo,
@@ -91,12 +98,6 @@ img {
 
 /* About Page */
 
-.about-title {
-    font-size: 2rem;
-    line-height: 1.1875;
-    font-weight: 700;
-}
-
 .about-text {
     font-weight: 500;
 }
@@ -130,6 +131,11 @@ img {
     display: flex;
     justify-content: space-between;
     padding: 2.25em 1.625em;
+}
+
+.nav {
+    display: flex;
+    gap: 1.56em;
 }
 
 /* Btns */
