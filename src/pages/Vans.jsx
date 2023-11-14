@@ -1,17 +1,22 @@
 import React from "react"
 import vansData from "../server"
+import { Link } from "react-router-dom"
 
 export default function Vans() {
-    const vansElements = vansData.map(van => {
+    const [ vans, setVans ] = React.useState(vansData)
+
+    const vansElements = vans.map(van => {
         return (
-            <div className="van-card">
-                <img src={van.imageUrl} alt="van image" className="van-card-img"/>
-                <div>
-                    <h3 className="van-card-name">{van.name}</h3>
-                    <span className="van-card-badge">{van.type}</span>
+            <Link to={`/vans/${van.id}`}>
+                <div className="van-card">
+                    <img src={van.imageUrl} alt="van image" className="van-card-img"/>
+                    <div>
+                        <h3 className="van-card-name">{van.name}</h3>
+                        <span className="van-card-badge">{van.type}</span>
+                    </div>
+                    <span className="van-card-offer"><span className="van-card-price">${van.price}</span>/day</span>
                 </div>
-                <span className="van-card-offer"><span className="van-card-price">${van.price}</span>/day</span>
-            </div>
+            </Link>
         )
     })
 
