@@ -17,11 +17,15 @@ export default function VanDetail() {
     return (
         <main>
             <div className="container">
-                { van ? (
-                    <div className="van-details">
+            <Link
+                to=".."
+                relative="path"
+            >Back to all vans</Link>
+            { van ? (
+                    <div className="van-details van-detail-container">
                         <img className="van-details-page-photo" src={van.imageUrl} alt={van.name} />
                         <span className="van-card-badge">{van.type}</span>
-                        <h2 className="van-details-page-name">{van.name}</h2>
+                        <h2 className="title">{van.name}</h2>
                         <span className="van-details-page-offer"><span className="van-details-page-price">${van.price}</span>/day</span>
                         <p className="van-details-page-description">{van.description}</p>
                         <Link to="" className="btn accent-btn home-page-btn van-details-page-btn">Rent this van</Link>

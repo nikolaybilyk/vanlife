@@ -67,6 +67,21 @@ img {
     color: var(--grey-color);
 }
 
+.dashboard-nav-item {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.nav-item-selected,
+.dashboard-nav-item-selected {
+    color: var(--dark-color);
+    text-decoration: underline;
+}
+
+.dashboard-nav-item-selected {
+    font-weight: 700;
+}
+
 /* ------------ add hover states for nav items */
 
 /* Btns */
@@ -107,6 +122,17 @@ img {
     line-height: 1.25;
 }
 
+/* Vans */
+
+.vans-filter {
+    color: var(--grey-color);
+    font-weight: 500; 
+}
+
+.selected-filter {
+    color: var(--orange-light-color);
+}
+
 /* Footer */
 
 .footer-text {
@@ -136,6 +162,10 @@ img {
 .nav {
     display: flex;
     gap: 1.56em;
+}
+
+.dashboard-nav {
+    gap: 1.8125em;
 }
 
 /* Btns */
@@ -178,6 +208,10 @@ img {
 
 /* About */
 
+.about-container {
+    padding-bottom: 3.3125em;
+}
+
 .about-title {
     margin: 1.5em 0 .96em;
 }
@@ -187,7 +221,7 @@ img {
 }
 
 .promo-block {
-    margin: 3.4375em 0 3.3125em;
+    margin-top: 3.4375em;
     padding: 2em;
     background: var(--orange-bg-color);
     border-radius: 5px;
@@ -196,6 +230,37 @@ img {
 .about-page-btn {
     margin-top: 1.5625em;
     border-radius: 10px;
+}
+
+/* Vans */
+
+.vans-container {
+    padding-bottom: 5.1875em;
+}
+
+.vans-filter {
+    padding: .375em 1.625em .4375em;
+    border: none;
+    border-radius: 5px;
+    background: var(--orange-light-color);
+}
+
+.vans-filter.simple.selected-filter {
+    background: var(--orange-hover-color);
+}
+
+.vans-filter.luxury.selected-filter {
+    background: var(--dark-color);
+}
+
+.vans-filter.rugged.selected-filter {
+    background: var(--green-hover-color);
+}
+
+/* VanDetail */
+
+.van-detail-container {
+    padding-bottom: 5.294em;
 }
 
 /* Footer */
