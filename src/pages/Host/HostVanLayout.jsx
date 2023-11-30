@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, NavLink, Outlet, useParams } from "react-router-dom"
-import vansData from "../server"
+import vansData from "../../server"
 
 export default function HostVanLayout() {
     const params = useParams()

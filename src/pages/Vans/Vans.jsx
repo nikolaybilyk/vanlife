@@ -1,5 +1,5 @@
 import React from "react"
-import vansData from "../server"
+import vansData from "../../server"
 import { Link, useSearchParams } from "react-router-dom"
 
 export default function Vans() {

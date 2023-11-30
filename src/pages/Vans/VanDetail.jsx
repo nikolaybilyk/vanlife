@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, useParams, useLocation } from "react-router-dom"
-import vansData from "../server"
+import vansData from "../../server"
 
 export default function VanDetail() {
     const params = useParams()
