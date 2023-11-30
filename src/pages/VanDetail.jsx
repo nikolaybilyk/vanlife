@@ -1,10 +1,12 @@
 import React from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useLocation } from "react-router-dom"
 import vansData from "../server"
 
 export default function VanDetail() {
     const params = useParams()
     const [ van, setVan ] = React.useState(null)
+    const location = useLocation()
+    const searchedVanType = location.state?.type || "all"
     
     React.useEffect(() => {
         vansData.map(van => {
@@ -14,13 +16,16 @@ export default function VanDetail() {
         })
     }, [params])
 
+    
     return (
         <main>
             <div className="container">
             <Link
-                to=".."
+                to={`..?${location.state?.search || ""}`}
                 relative="path"
-            >Back to all vans</Link>
+            >
+                {`Back to ${searchedVanType} vans`}
+            </Link>
             { van ? (
                     <div className="van-details van-detail-container">
                         <img className="van-details-page-photo" src={van.imageUrl} alt={van.name} />
