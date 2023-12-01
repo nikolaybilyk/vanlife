@@ -1,16 +1,20 @@
 import React from "react"
-import vansData from "../../server"
-import { Link, useSearchParams } from "react-router-dom"
+import getVans from "../../api"
+import {
+    Link,
+    useSearchParams,
+    useLoaderData
+} from "react-router-dom"
+
+export function loader() {
+    return getVans()
+}
 
 export default function Vans() {
     const [ searchParams, setSearchParams ] = useSearchParams()
+    const vans  = useLoaderData()
+
     const typeFilter = searchParams.get("type")
-
-    const [ vans, setVans ] = React.useState(vansData)
-
-    React.useEffect(() => {
-        setVans(vansData)
-    }, [])
 
     const displayedVans = typeFilter
         ? vans.filter( van => van.type === typeFilter)
