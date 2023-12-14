@@ -1,8 +1,13 @@
 import React from "react"
 import { useOutletContext } from "react-router-dom"
+import { requireAuth } from "../../utils"
+
+export async function loader({ request }) {
+    return requireAuth(request)
+}
 
 export default function HostVanDetail() {
-    const { van } =  useOutletContext()
+    const { van } = useOutletContext()
 
     return (
         <section>

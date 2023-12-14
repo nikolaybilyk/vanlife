@@ -1,9 +1,15 @@
 import React from "react"
-import { Link } from "react-router-dom"
-import vansData from "../../server"
+import { Link, useLoaderData } from "react-router-dom"
+import getVans from "../../api"
+import { requireAuth } from "../../utils"
+
+export async function loader({request}) {
+    await requireAuth(request)
+    return getVans()
+}
 
 export default function HostVans() {
-    const [ vans, setVans ] = React.useState(vansData)
+    const vans = useLoaderData()
 
     const hostVansElements = vans.map( van => {
         return (
@@ -25,6 +31,7 @@ export default function HostVans() {
             </Link>
         )
     })
+
     return (
         <>
             <h2 className="title">Your listed vans</h2>
