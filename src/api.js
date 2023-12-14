@@ -1,28 +1,38 @@
-import data from "./server"
+import { initializeApp } from "firebase/app"
+import { getFirestore, collection, doc, getDocs, getDoc } from "firebase/firestore/lite"
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
+const firebaseConfig = {
+  apiKey: "AIzaSyDrf4TXLgP8OJYpNt6Ir_CrrnvgUwOdQjE",
+  authDomain: "vanlife-dfbba.firebaseapp.com",
+  projectId: "vanlife-dfbba",
+  storageBucket: "vanlife-dfbba.appspot.com",
+  messagingSenderId: "505909576200",
+  appId: "1:505909576200:web:5c6f788dabae9f9ff947bd"
 }
 
-export default async function getVans(paramsVanId) {
-    // throw {
-    //     message: "There was an error fetching the data"
-    // }
-    await sleep(1000)
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
 
-    let vansData
+const vansCollectionRef = collection(db, "vans")
 
-    if (paramsVanId) {
-        data.map(van => {
-            if (van.id === paramsVanId) {
-                vansData = van
-            }
-        })
-    } else {
-        vansData = data
+export default async function getVans() {
+    const querySnapshot = await getDocs(vansCollectionRef)
+    const dataArr = querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+    }))
+
+    return dataArr
+}
+
+export async function getVan(vanId) {
+    const docRef = doc(db, "vans", vanId)
+    const vanSnapshot = await getDoc(docRef)
+
+    return {
+        ...vanSnapshot.data(),
+        id: vanSnapshot.id
     }
-
-    return vansData
 }
 
 export async function loginUser({ email, password}) {

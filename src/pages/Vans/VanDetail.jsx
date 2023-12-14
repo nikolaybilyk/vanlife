@@ -6,10 +6,10 @@ import {
     useLoaderData,
     defer
 } from "react-router-dom"
-import getVans from "../../api"
+import { getVan } from "../../api"
 
 export function loader({ params }) {
-    return defer({ vansDataPromise: getVans(params.id) })
+    return defer({ vansDataPromise: getVan(params.id) })
 }
 
 export default function VanDetail() {

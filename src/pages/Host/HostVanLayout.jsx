@@ -7,12 +7,12 @@ import {
     useLoaderData,
     defer
 } from "react-router-dom"
-import getVans from "../../api"
+import { getVan } from "../../api"
 import { requireAuth } from "../../utils"
 
 export async function loader({ params, request }) {
     await requireAuth(request)
-    return defer({ vanDataPromise: getVans(params.id)})
+    return defer({ vanDataPromise: getVan(params.id)})
 }
 
 export default function HostVanLayout() {
