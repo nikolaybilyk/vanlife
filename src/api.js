@@ -1,9 +1,15 @@
 import data from "./server"
 
-export default function getVans(paramsVanId) {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+export default async function getVans(paramsVanId) {
     // throw {
     //     message: "There was an error fetching the data"
     // }
+    await sleep(1000)
+
     let vansData
 
     if (paramsVanId) {

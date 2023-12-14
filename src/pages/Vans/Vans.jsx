@@ -2,61 +2,51 @@ import React from "react"
 import getVans from "../../api"
 import {
     Link,
+    Await,
     useSearchParams,
-    useLoaderData
+    useLoaderData,
+    defer
 } from "react-router-dom"
 
 export function loader() {
-    return getVans()
+    return defer({ vans: getVans() })
 }
 
 export default function Vans() {
     const [ searchParams, setSearchParams ] = useSearchParams()
-    const vans  = useLoaderData()
-
     const typeFilter = searchParams.get("type")
-
-    const displayedVans = typeFilter
-        ? vans.filter( van => van.type === typeFilter)
-        : vans
-
-    const vansElements = displayedVans.map(van => {
-        return (
-            <Link
-                to={`${van.id}`}
-                key={van.id}
-                state={{
-                    search: searchParams.toString(),
-                    type: typeFilter
-                }}
-            >
-                <div className="van-card">
-                    <img src={van.imageUrl} alt="van image" className="van-card-img"/>
-                    <div>
-                        <h3 className="van-card-name">{van.name}</h3>
-                        <span className="van-card-badge">{van.type}</span>
-                    </div>
-                    <span className="van-card-offer"><span className="van-card-price">${van.price}</span>/day</span>
-                </div>
-            </Link>
-        )
-    })
-
-    function handleFilterChange(key, value) {
-        setSearchParams(prevSearchParams => {
-            if (!value) {
-                prevSearchParams.delete(key)
-            } else {
-                prevSearchParams.set(key, value)
-            }
-            return prevSearchParams
-        })
-    }
     
-    return (
-        <main className="vans">
-            <div className="container vans-container">
-                <h2 className="title vans-title">Explore our van options</h2>
+    const dataPromise  = useLoaderData()
+
+    function renderVanElements(vans) {
+        const displayedVans = typeFilter
+            ? vans.filter( van => van.type === typeFilter)
+            : vans
+    
+        const vanElements = displayedVans.map(van => {
+            return (
+                <Link
+                    to={`${van.id}`}
+                    key={van.id}
+                    state={{
+                        search: searchParams.toString(),
+                        type: typeFilter
+                    }}
+                >
+                    <div className="van-card">
+                        <img src={van.imageUrl} alt="van image" className="van-card-img"/>
+                        <div>
+                            <h3 className="van-card-name">{van.name}</h3>
+                            <span className="van-card-badge">{van.type}</span>
+                        </div>
+                        <span className="van-card-offer"><span className="van-card-price">${van.price}</span>/day</span>
+                    </div>
+                </Link>
+            )
+        })
+
+        return (
+            <>
                 <div className="vans-filters-block">
                     <button
                         onClick={() => handleFilterChange("type", "simple")}
@@ -93,8 +83,32 @@ export default function Vans() {
                     }
                 </div>
                 <div className="vans-block">
-                    {vans ? vansElements : <h2>Loading...</h2>}
+                    {vanElements}
                 </div>
+            </>
+        )
+    }
+
+    function handleFilterChange(key, value) {
+        setSearchParams(prevSearchParams => {
+            if (!value) {
+                prevSearchParams.delete(key)
+            } else {
+                prevSearchParams.set(key, value)
+            }
+            return prevSearchParams
+        })
+    }
+    
+    return (
+        <main className="vans">
+            <div className="container vans-container">
+                <h2 className="title vans-title">Explore our van options</h2>
+                <React.Suspense fallback={<h2>Loading vans...</h2>}>
+                    <Await resolve={dataPromise.vans}>
+                        {renderVanElements}
+                    </Await>
+                </React.Suspense>
             </div>
         </main>
     )

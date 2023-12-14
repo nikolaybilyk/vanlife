@@ -7,7 +7,7 @@ export default function Error() {
     return (
         <div className="container">
             <h1>Oops, sorry! {error.message}</h1>
-            <pre>{error.status ? error.status : "Unknown status number"} - {error.statusText ? error.statusText : "Unknown status text"}</pre>
+            <pre>{error.status || "Unknown status number"} - {error.statusText || "Unknown status text"}</pre>
         </div>
     )
 }
